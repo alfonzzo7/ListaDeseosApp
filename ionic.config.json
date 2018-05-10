@@ -1,0 +1,8 @@
+{
+  "name": "5_ListaDeseos_ionic",
+  "app_id": "a0a20be3",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
