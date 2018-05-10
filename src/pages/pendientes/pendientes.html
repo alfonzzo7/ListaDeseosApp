@@ -1,9 +1,36 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>Pendientes</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h1>Pendientes</h1>
+  <ion-card *ngFor="let lista of _listaDeseos.listas">
+    <ion-item>
+      Boton
+    </ion-item>
+    <h2>{{lista.nombre}}</h2>
+    <ion-list>
+      <ion-item>
+        <ion-icon name="checkmark-circle"></ion-icon>
+        Tetris
+      </ion-item>
+      <ion-item>
+        <ion-icon name="checkmark-circle"></ion-icon>
+        Tetris
+      </ion-item>
+      <ion-item>
+        <ion-icon name="checkmark-circle"></ion-icon>
+        Tetris
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+
+  <ion-fab right bottom>
+      <button ion-fab color="primary" (click)="irAgregar()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-fab>
+
 </ion-content>
