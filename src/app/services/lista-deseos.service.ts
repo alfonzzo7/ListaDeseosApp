@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Lista } from '../classes/listas';
+import { Lista } from '../classes/lista';
 
 @Injectable()
 export class ListaDeseosService {
