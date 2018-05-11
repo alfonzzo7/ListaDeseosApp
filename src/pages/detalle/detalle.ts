@@ -10,7 +10,8 @@ import { ListaDeseosService } from '../../app/services/lista-deseos.service';
 export class DetalleComponent implements OnInit {
 
   index:number;
-  lista:any;
+  lista:Lista;
+  // nombreItem:string = "";
 
   constructor(public navCtrl:NavController,
               public navParams:NavParams,
@@ -34,6 +35,80 @@ export class DetalleComponent implements OnInit {
     }
     this.lista.completada = listaCompletada;
     this._listaDeseos.actualizarData();
+  }
+
+  agregarItem(){
+    // if(this.nombreItem.length <= 0){
+    //   return;
+    // }
+    //
+    // let item = new ListaItem();
+    // item.nombre = this.nombreItem;
+    //
+    // this.lista.items.push(item);
+    // this.nombreItem = "";
+    let prompt = this.alertCtrl.create({
+      title: 'Agregar Item',
+      message: "Introduzca el nombre del item que desea agregar",
+      inputs: [
+        {
+          name: 'nombreItem',
+          placeholder: 'Nombre Item'
+        },
+      ],
+      buttons: ['Cancelar',
+        {
+          text: 'Guardar',
+          handler: data => {
+            let item = new ListaItem();
+            item.nombre = data.nombreItem;
+            this.lista.items.push(item);
+            this._listaDeseos.actualizarData();
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
+
+  borrarItem(index:number, nombreItem:string){
+    let confirm = this.alertCtrl.create({
+    title: nombreItem,
+    message: '¿Esta seguro que desea borrar el item?',
+    buttons: ['Cancelar',
+      {
+        text: 'Borrar',
+        handler: () => {
+          this.lista.items.splice(index, 1);
+          this._listaDeseos.actualizarData();
+        }
+      }
+    ]
+  });
+  confirm.present();
+  }
+
+  modificarItem(index:number, nombreItem:string){
+    let prompt = this.alertCtrl.create({
+      title: 'Editar Item',
+      message: "Introduzca el nuevo nombre del item",
+      inputs: [
+        {
+          name: 'nuevoNombreItem',
+          placeholder: nombreItem
+        },
+      ],
+      buttons: ['Cancelar',
+        {
+          text: 'Guardar',
+          handler: data => {
+            this.lista.items[index].nombre = data.nuevoNombreItem;
+            this._listaDeseos.actualizarData();
+          }
+        }
+      ]
+    });
+    prompt.present();
   }
 
   borrarLista(){

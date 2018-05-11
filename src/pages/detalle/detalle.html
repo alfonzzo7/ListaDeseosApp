@@ -14,19 +14,59 @@
     </ion-card-header>
     <ion-card-content>
       <ion-list>
-        <ion-item *ngFor="let item of lista.items"
-                  (click)="actualizarEstadoItem(item)">
-          <ion-icon item-left *ngIf="!item.completado" name="square-outline"></ion-icon>
-          <ion-icon item-left *ngIf="item.completado" name="checkbox-outline"></ion-icon>
+        <ion-item *ngFor="let item of lista.items; let i = index">
+          <ion-icon (click)="actualizarEstadoItem(item)" item-left *ngIf="!item.completado" name="square-outline"></ion-icon>
+          <ion-icon (click)="actualizarEstadoItem(item)" item-left *ngIf="item.completado" name="checkbox-outline"></ion-icon>
           <h2 [class.tachado]="item.completado">{{item.nombre}}</h2>
+          <button ion-button outline item-right clear (click)="modificarItem(i, item.nombre)">
+            <ion-icon name="create"></ion-icon>
+            &nbsp;Editar item
+          </button>
+          <button ion-button outline item-right color="danger" clear (click)="borrarItem(i, item.nombre)">
+            <ion-icon name="trash"></ion-icon>
+            &nbsp;Borrar item
+          </button>
         </ion-item>
       </ion-list>
     </ion-card-content>
   </ion-card>
 
+  <!-- <ion-card>
+    <ion-card-header>
+      <h3>Agregar Item</h3>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label floating>Item</ion-label>
+        <ion-input (keyup.enter)="agregarItem()"
+        type="text" [(ngModel)]="nombreItem" name="nombreItem"></ion-input>
+      </ion-item>
+
+      <button (click)="agregarItem()" ion-button icon-left>
+        <ion-icon name="list"></ion-icon>
+        Agregar Item
+      </button>
+
+    </ion-card-content>
+  </ion-card> -->
+
   <br><br>
-  <button (click)="borrarLista()"
-      ion-button class="button-block" color="danger">
-      Borrar Lista
-  </button>
+  <ion-grid>
+    <ion-row>
+      <ion-col class="text-center">
+        <button (click)="agregarItem()"
+            ion-button class="button-block" icon-left>
+            <ion-icon name="list"></ion-icon>
+            Agregar Item
+        </button>
+      </ion-col>
+      <ion-col>
+        <button (click)="borrarLista()"
+            ion-button class="button-block" color="danger" icon-left>
+            <ion-icon name="trash"></ion-icon>
+            Borrar Lista
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
