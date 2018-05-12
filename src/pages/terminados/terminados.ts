@@ -16,4 +16,8 @@ export class TerminadosComponent implements OnInit {
   verDetalle(lista, index){
     this._navController.push(DetalleComponent, {lista,index});
   }
+
+  desplegarPlegar(index:number){
+    console.log(index);
+  }
 }
