@@ -38,15 +38,6 @@ export class DetalleComponent implements OnInit {
   }
 
   agregarItem(){
-    // if(this.nombreItem.length <= 0){
-    //   return;
-    // }
-    //
-    // let item = new ListaItem();
-    // item.nombre = this.nombreItem;
-    //
-    // this.lista.items.push(item);
-    // this.nombreItem = "";
     let prompt = this.alertCtrl.create({
       title: 'Agregar Item',
       message: "Introduzca el nombre del item que desea agregar",
